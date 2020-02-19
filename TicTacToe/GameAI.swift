@@ -9,5 +9,73 @@
 import Foundation
 
 func game(board: GameBoard, isWonBy player: GameBoard.Mark) -> Bool {    
+    
+//    var numMarks = 0
+    var numMatches = 0
+//    for y in 0..<3 {
+//        if board[(0, y)] == player {
+//            numMarks += 1
+//        }
+//    }
+//
+//    if numMarks == 3 {
+//        return true
+//    }
+    
+    // Check Verticals
+    for x in 0..<3 {
+        var numMarks = 0
+        for y in 0..<3 {
+            if board[(x, y)] == player {
+                numMarks += 1
+            }
+            
+            if numMarks == 3 {
+                return true
+            }
+        }
+    }
+    
+    // Check Horizontals
+    for y in 0..<3 {
+        var numMarks = 0
+        for x in 0..<3 {
+            if board[(x, y)] == player {
+                numMarks += 1
+            }
+            
+            if numMarks == 3 {
+                return true
+            }
+        }
+    }
+    
+    // Check Diagonals
+    
+    // Left to Right
+    let leftToRight: [Coordinate] = [(0,0), (1, 1), (2, 2)]
+    numMatches = 0
+    for coord in leftToRight {
+        if board[coord] == player {
+            numMatches += 1
+        }
+    }
+    
+    if numMatches == 3 {
+        return true
+    }
+    // Right to Left
+    
+    let rightToLeft: [Coordinate] = [(2, 0), (1, 1), (0, 2)]
+    numMatches = 0
+    for coord in rightToLeft {
+        if board[coord] == player {
+            numMatches += 1
+        }
+    }
+    
+    if numMatches == 3 {
+        return true 
+    }
     return false
 }
